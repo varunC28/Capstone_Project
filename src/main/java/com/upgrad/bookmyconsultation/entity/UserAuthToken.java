@@ -47,4 +47,64 @@ public class UserAuthToken {
 	private ZonedDateTime expiresAt;
 
 	private ZonedDateTime logoutAt;
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getAccessToken() {
+		return accessToken;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.accessToken = accessToken;
+	}
+
+	public ZonedDateTime getLoginAt() {
+		return loginAt;
+	}
+
+	public void setLoginAt(ZonedDateTime loginAt) {
+		this.loginAt = loginAt;
+	}
+
+	public ZonedDateTime getExpiresAt() {
+		return expiresAt;
+	}
+
+	public void setExpiresAt(ZonedDateTime expiresAt) {
+		this.expiresAt = expiresAt;
+	}
+
+	public ZonedDateTime getLogoutAt() {
+		return logoutAt;
+	}
+
+	public void setLogoutAt(ZonedDateTime logoutAt) {
+		this.logoutAt = logoutAt;
+	}
+
+	@Override
+	public String toString() {
+		return "UserAuthToken{" +
+				"id=" + id +
+				", user=" + user +
+				", accessToken='" + accessToken + '\'' +
+				", loginAt=" + loginAt +
+				", expiresAt=" + expiresAt +
+				", logoutAt=" + logoutAt +
+				'}';
+	}
 }

@@ -15,7 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import springfox.documentation.annotations.Cacheable;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -44,6 +43,26 @@ public class DoctorService {
 		//Set the address in the doctor object with the response
 		//save the doctor object to the database
 		//return the doctor object
+
+	public Doctor register (Doctor doctor) throws InvalidInputException {
+
+		ValidationUtils.validate(doctor);
+
+		if (doctor.getAddress() == null) {
+			throw new InvalidInputException();
+		}
+		doctor.setId(UUID.randomUUID().toString());
+
+		if (doctor.getSpeciality() == null ) {
+			doctor.setSpeciality(Speciality.GENERAL_PHYSICIAN);
+		}
+
+		Address savedAddress = addressRepository.save(doctor.getAddress());
+
+		doctor.setAddress(savedAddress);
+
+		return doctorRepository.save(doctor);
+	}
 	
 	
 	//create a method name getDoctor that returns object of type Doctor and has a String paramter called id
@@ -51,7 +70,14 @@ public class DoctorService {
 		//if doctor is found return the doctor
 		//else throw ResourceUnAvailableException
 
-	
+	public Doctor getDoctor(String id) throws ResourceUnAvailableException {
+		Optional<Doctor> optionalDoctor = doctorRepository.findById(id);
+		if (optionalDoctor.isPresent()) {
+			return optionalDoctor.get();
+		}
+		throw new ResourceUnAvailableException();
+	}
+
 
 	public List<Doctor> getAllDoctorsWithFilters(String speciality) {
 
@@ -63,7 +89,7 @@ public class DoctorService {
 
 	@Cacheable(value = "doctorListByRating")
 	private List<Doctor> getActiveDoctorsSortedByRating() {
-		log.info("Fetching doctor list from the database");
+//		log.info("Fetching doctor list from the database");
 		return doctorRepository.findAllByOrderByRatingDesc()
 				.stream()
 				.limit(20)

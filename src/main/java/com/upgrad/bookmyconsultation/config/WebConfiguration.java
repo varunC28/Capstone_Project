@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan("com.upgrad.bookmyconsultation.controller")
+@ComponentScan("com.upgrad.bookmyconsultation")
 //@ServletComponentScan("com.upgrad.bookmyconsultation.servlet")
 public class WebConfiguration {
 

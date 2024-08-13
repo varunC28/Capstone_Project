@@ -39,8 +39,8 @@ public class AppointmentService {
 
 	public String appointment(Appointment appointment) throws SlotUnavailableException, InvalidInputException {
 		ValidationUtils.validate(appointment);
-		Optional<Appointment> existingAppointment = appointmentRepository.findByDoctorIdAndTimeSlotAndAppointmentDate
-				(appointment.getDoctorId(), appointment.getTimeSlot(), appointment.getAppointmentDate() );
+		Optional<Appointment> existingAppointment = Optional.ofNullable(appointmentRepository.findByDoctorIdAndTimeSlotAndAppointmentDate
+                (appointment.getDoctorId(), appointment.getTimeSlot(), appointment.getAppointmentDate()));
 		if (existingAppointment.isPresent()) {
 			throw new SlotUnavailableException();
 		}
@@ -59,7 +59,7 @@ public class AppointmentService {
 	public Appointment getAppointment(String appointmentId) throws ResourceUnAvailableException {
 		// Use the appointmentId to get the appointment details
 		return Optional.ofNullable(appointmentRepository.findById(appointmentId).orElse(null))
-				.orElseThrow(() -> new ResourceUnAvailableException("Appointment not found with ID: " + appointmentId));
+				.orElseThrow(() -> new ResourceUnAvailableException());
 	}
 
 	

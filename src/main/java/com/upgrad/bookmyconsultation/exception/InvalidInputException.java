@@ -10,4 +10,7 @@ import java.util.List;
 public class InvalidInputException extends Exception{
     private List<String> attributeNames;
 
+    public InvalidInputException() {
+        super();
+    }
 }

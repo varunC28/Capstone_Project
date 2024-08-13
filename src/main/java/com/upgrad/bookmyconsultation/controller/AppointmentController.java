@@ -38,6 +38,12 @@ public class AppointmentController {
 		}
 	}
 
+//@PostMapping
+//public ResponseEntity<String> bookAppointment(@RequestBody Appointment appointment) {
+//	ResponseEntity<String> ok = ResponseEntity.ok(appointmentService.appointment(appointment));
+//	return ok;
+//}
+
 	
 	//create a get method named getAppointment with return type as ResponseEntity
 		//method has appointmentId of type String. Use PathVariable annotation to identity appointment using the parameter defined

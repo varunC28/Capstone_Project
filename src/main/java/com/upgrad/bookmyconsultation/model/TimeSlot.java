@@ -17,6 +17,30 @@ public class TimeSlot {
 	private String availableDate;
 	private List<String> timeSlot;
 
+	public String getDoctorId() {
+		return doctorId;
+	}
+
+	public void setDoctorId(String doctorId) {
+		this.doctorId = doctorId;
+	}
+
+	public String getAvailableDate() {
+		return availableDate;
+	}
+
+	public void setAvailableDate(String availableDate) {
+		this.availableDate = availableDate;
+	}
+
+	public List<String> getTimeSlot() {
+		return timeSlot;
+	}
+
+	public void setTimeSlot(List<String> timeSlot) {
+		this.timeSlot = timeSlot;
+	}
+
 	public TimeSlot(String doctorId, String date) {
 
 

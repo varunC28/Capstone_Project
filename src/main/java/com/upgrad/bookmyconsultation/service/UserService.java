@@ -23,11 +23,16 @@ public class UserService {
 	@Autowired
 	private PasswordCryptographyProvider passwordCryptographyProvider;
 
+	public UserService(UserRepository userRepository, PasswordCryptographyProvider passwordCryptographyProvider) {
+		this.userRepository = userRepository;
+		this.passwordCryptographyProvider = passwordCryptographyProvider;
+	}
+
 
 	public User register(User user) throws InvalidInputException {
 		ValidationUtils.validate(user);
 
-		user.setCreatedDate(LocalDate.now().toString());
+		user.setCreateDate(LocalDate.now().toString());
 		encryptPassword(user);
 		userRepository.save(user);
 		return user;
@@ -36,12 +41,16 @@ public class UserService {
 	public User getUser(String id) {
 		return Optional.ofNullable(userRepository.findById(id))
 				.get()
-				.orElseThrow(ResourceUnAvailableException::new);
+				.orElseThrow(() -> new ResourceUnAvailableException());
 	}
 
 	//create a method named getAllUsers that returns a List of type User
 		//return all the users from the database
-	
+	public List<User> getAllUsers() {
+		// Return all the users from the database
+		return userRepository.findAll();
+	}
+
 
 	private void encryptPassword(final User newUser) {
 

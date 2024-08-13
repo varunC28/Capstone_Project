@@ -32,7 +32,7 @@ public class ValidationUtils {
 		if (user.getLastName() == null || !user.getLastName().matches("^[a-zA-Z\\\\s]{1,10}$")) {
 			errorFields.add("Last Name");
 		}
-		if (errorFields.size() > 0) throw new InvalidInputException(errorFields);
+		if (errorFields.size() > 0) throw new InvalidInputException();
 	}
 
 	public static void validate(Doctor doctor) throws InvalidInputException {
@@ -55,7 +55,7 @@ public class ValidationUtils {
 		if (doctor.getEmailId() == null || !doctor.getEmailId().matches("^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")) {
 			errorFields.add("Email Id");
 		}
-		if (errorFields.size() > 0) throw new InvalidInputException(errorFields);
+		if (errorFields.size() > 0) throw new InvalidInputException();
 	}
 
 	public static void validate(Appointment appointment) throws InvalidInputException {
@@ -75,7 +75,7 @@ public class ValidationUtils {
 			errorFields.add("AppointmentDate");
 		}
 
-		if (errorFields.size() > 0) throw new InvalidInputException(errorFields);
+		if (errorFields.size() > 0) throw new InvalidInputException();
 	}
 
 	public static boolean isValid(String dateStr) {
